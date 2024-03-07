@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
-
-export interface Todo {
-  ID: string;
-  todo: string;
-  createdAt: Date;
-}
+import { Todo } from '../app.component';
+import axios from 'axios';
+import { format } from 'date-fns';
+import { NetlifyService } from '../../services/netlify.service';
 
 @Component({
   selector: 'app-todos',
@@ -17,4 +15,10 @@ export interface Todo {
 })
 export class TodosComponent {
   todos: Todo[] = [];
+
+  constructor(private netlifyService: NetlifyService) {}
+
+  async ngOnInit() {
+    this.todos = await this.netlifyService.getTodos();
+  }
 }

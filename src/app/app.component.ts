@@ -5,6 +5,12 @@ import { NewTodoComponent } from './new-todo/new-todo.component';
 import { DialogModule } from 'primeng/dialog';
 import { TodosComponent } from './todos/todos.component';
 
+export interface Todo {
+  ID: string;
+  todo: string;
+  createdAt: Date;
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
